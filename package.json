@@ -11,7 +11,8 @@
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "pack": "crx pack build -o dist/focus-app.crx -p dist/key.pem"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/glitchedmob/focus-app#readme",
   "devDependencies": {
     "cross-env": "^5.1.1",
+    "crx": "^3.2.1",
     "laravel-mix": "^1.6.1",
     "laravel-mix-pug": "^0.1.3",
     "pug": "^2.0.0-rc.4"
