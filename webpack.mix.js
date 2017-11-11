@@ -5,3 +5,5 @@ mix
 	.sourceMaps()
 	.sass('src/docs/sass/main.scss', 'docs/css')
 	.pug('src/docs/pug/*.pug', 'docs', { seeds: null })
+	.copyDirectory('src/app/images', 'build/images')
+	.copy(['src/app/manifest.json'], 'build')

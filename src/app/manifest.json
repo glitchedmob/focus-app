@@ -1,0 +1,11 @@
+{
+	"manifest_version": 2,
+	"name": "Focus App",
+	"description": "An extension to help you focus",
+	"version": "1.0",
+	"icons": {
+		"16": "images/icons/focus-app16.png",
+		"48": "images/icons/focus-app48.png",
+		"128": "images/icons/focus-app128.png"
+	}
+}
