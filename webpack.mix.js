@@ -10,3 +10,4 @@ mix
 	.copyDirectory('src/app/images', 'build/images')
 	.copy(['src/app/manifest.json'], 'build')
 	.pug('src/app/pug/*.pug', 'build/html', { seeds: null })
+	.sass('src/app/sass/popup.scss', 'build/css')
