@@ -4,10 +4,10 @@ mix.pug   = require('laravel-mix-pug');
 mix
 	.sourceMaps()
 	// GitHub Pages files
-	.sass('src/docs/sass/main.scss', 'docs/css')
+	.stylus('src/docs/stylus/main.styl', 'docs/css')
 	.pug('src/docs/pug/*.pug', 'docs', { seeds: null })
 	// Extension files
 	.copyDirectory('src/app/images', 'build/images')
 	.copy(['src/app/manifest.json'], 'build')
 	.pug('src/app/pug/*.pug', 'build/html', { seeds: null })
-	.sass('src/app/sass/popup.scss', 'build/css')
+	.stylus('src/app/stylus/popup.styl', 'build/css')
