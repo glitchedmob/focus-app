@@ -18,6 +18,7 @@ $width = 200px
 	position relative
 	margin 30px auto 0
 	cursor pointer
+	box-shadow 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
 .toggle
 	height 100%
@@ -26,7 +27,7 @@ $width = 200px
 
 .toggle-button
 	box-sizing border-box
-	background-color #F2F2F2
+	background-color #FAFAFA
 	position absolute
 	display block
 	top 0
@@ -36,7 +37,6 @@ $width = 200px
 
 .toggle-content
 	box-shadow rgba(0, 0, 0, 0.2) 0 0 5px inset
-	background rgba(157, 38, 29, 0.5)
 	cursor pointer
 	display inline-block
 	float left 
@@ -55,10 +55,12 @@ $width = 200px
 		float left
 
 .toggle-left
-	background-color #59BDFF
+	background linear-gradient(360deg, #2B32B2 0%, #1488CC 101.35%)
+	color #FFF
 	
 .toggle-right
-	background-color #FF4F51
+	background linear-gradient(180deg, #EB3349 0%, #F45C43 100%)
+	color #FFF
 
 	span
 		float right
