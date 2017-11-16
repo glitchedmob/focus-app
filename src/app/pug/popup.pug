@@ -8,3 +8,13 @@ html(lang='en')
     link(rel="stylesheet", href="../css/popup.css")
   body
     h1 Focus
+
+    .toggle-switch
+      input.toggle-checkbox#focus-state(type="checkbox")
+      label.toggle-viewport(for="focus-state")
+        .toggle
+          .toggle-button
+          .toggle-content.toggle-left
+            span On
+          .toggle-content.toggle-right
+            span Off
