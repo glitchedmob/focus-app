@@ -1,3 +1,3 @@
 import { FocusToggle } from './popup/FocusToggle';
 
-new FocusToggle()
+new FocusToggle();

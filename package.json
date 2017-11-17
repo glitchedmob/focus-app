@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/glitchedmob/focus-app#readme",
   "devDependencies": {
+    "@types/chrome": "0.0.54",
     "cross-env": "^5.1.1",
     "crx": "^3.2.1",
     "laravel-mix": "^1.6.1",
@@ -33,6 +34,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "ts-loader": "^3.1.1",
+    "tslint": "^5.8.0",
     "typescript": "^2.6.1"
   }
 }
