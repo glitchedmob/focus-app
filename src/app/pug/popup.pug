@@ -9,14 +9,15 @@ html(lang='en')
   body
     h1#title Focus
 
-    input.toggle-checkbox#focus-state(type="checkbox")
-    label.toggle-viewport(for="focus-state")
-      .toggle
-        .toggle-button
-        .toggle-content.toggle-left
-          span On
-        .toggle-content.toggle-right
-          span Off
+    .toggle-switch
+      input.toggle-checkbox#focus-state(type="checkbox")
+      label.toggle-viewport(for="focus-state")
+        .toggle
+          .toggle-button
+          .toggle-content.toggle-left
+            span On
+          .toggle-content.toggle-right
+            span Off
 
     script(src="../js/popup.js")
           
