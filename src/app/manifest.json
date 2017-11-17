@@ -9,7 +9,10 @@
 		"128": "images/icons/focus-app128.png"
 	},
 	"browser_action": {
-		"default_icon": "images/focus-app.png",
+		"default_icon": "images/icons/focus-app-red38.png",
 		"default_popup": "html/popup.html"
-  }
+	},
+	"web_accessible_resources": [
+		"images/icons/focus-app-38.png"
+	]
 }
