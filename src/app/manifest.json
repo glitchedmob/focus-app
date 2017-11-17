@@ -15,6 +15,9 @@
 	"permissions": [
 		"storage"
 	],
+	"background": {
+		"page": "html/background.html"
+	},
 	"web_accessible_resources": [
 		"images/icons/focus-app-38.png"
 	]
