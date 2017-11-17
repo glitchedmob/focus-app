@@ -8,7 +8,9 @@
 		"indent": [true, "tabs", 2],
 		"one-line": [true, "check-catch",	"check-finally", "check-else", "check-whitespace"],
 		"quotemark": [true,	"single"],
-		"no-unused-expression": [true, "allow-new"]
+		"no-unused-expression": [true, "allow-new"],
+		"arrow-parens": false,
+		"curly": [true, "ignore-same-line"]
 	},
 	"rulesDirectory": []
 	

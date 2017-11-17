@@ -1,12 +1,10 @@
-import 'chrome';
 import { $on, qs } from '../helpers';
-
 /**
  * Manages the focus toggle in the popup
  */
 export class FocusToggle
 {
-	private toggleCheckbox: Element;
+	private toggleCheckbox: HTMLInputElement;
 	private titleEl: Element;
 	private focused = false;
 
@@ -14,7 +12,8 @@ export class FocusToggle
 	{
 		// Chache main HTML elements in popup
 		this.titleEl = qs('#title');
-		this.toggleCheckbox = qs('#focus-state');
+		this.toggleCheckbox = qs('#focus-state') as HTMLInputElement;
+		this.toggleCheckbox.checked = this.focused;
 
 		// Attache click event listener
 		$on(this.toggleCheckbox, 'click', this.toggleFocus.bind(this));
@@ -32,7 +31,7 @@ export class FocusToggle
 
 		// Update chrome icon
 		chrome.browserAction.setIcon({
-			path: this.focused ? '../images/icons/focus-app38.png' : '../images/icons/focus-app-red38.png'
+			path: this.focused ? '../images/icons/focus-app38.png' : '../images/icons/focus-app-red38.png',
 		});
 	}
 }

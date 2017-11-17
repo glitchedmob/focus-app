@@ -12,6 +12,9 @@
 		"default_icon": "images/icons/focus-app-red38.png",
 		"default_popup": "html/popup.html"
 	},
+	"permissions": [
+		"storage"
+	],
 	"web_accessible_resources": [
 		"images/icons/focus-app-38.png"
 	]
