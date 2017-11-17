@@ -1,5 +1,8 @@
-$height = 75px
-$width = 200px
+$height = 60px
+$width = 150px
+$left-background = linear-gradient(360deg, #2B32B2 0%, #1488CC 101.35%)
+$right-background = linear-gradient(180deg, #EB3349 0%, #F45C43 100%)
+$toggle-background = #EEEEEE
 
 .toggle-checkbox
 	display none
@@ -11,12 +14,13 @@ $width = 200px
 	transition all 300ms ease-in-out
 
 .toggle-viewport
+	border-radius ($height / 2)
 	display block
 	height $height
 	overflow hidden
 	width $width
 	position relative
-	margin 30px auto 0
+	margin 0 auto 0
 	cursor pointer
 	box-shadow 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
@@ -26,8 +30,9 @@ $width = 200px
 	width 200%
 
 .toggle-button
+	border-radius ($height / 2)
 	box-sizing border-box
-	background-color #FAFAFA
+	background $toggle-background
 	position absolute
 	display block
 	top 0
@@ -57,17 +62,17 @@ $width = 200px
 		float left
 
 .toggle-left
-	background linear-gradient(360deg, #2B32B2 0%, #1488CC 101.35%)
+	background $left-background
 	
 .toggle-right
-	background linear-gradient(180deg, #EB3349 0%, #F45C43 100%)
+	background $right-background
 
 	span
 		float right
 
 .toggle-checkbox
 	
-	& + .toggle-viewport 
+	&:checked + .toggle-viewport 
 
 		> .toggle
 			left 0
@@ -81,7 +86,8 @@ $width = 200px
 		.toggle-left
 			margin-left 0
 	
-	&:checked + .toggle-viewport 
+	font-size: 50px
+	& + .toggle-viewport 
 
 		> .toggle
 			left -100%

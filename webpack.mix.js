@@ -11,3 +11,4 @@ mix
 	.copy(['src/app/manifest.json'], 'build')
 	.pug('src/app/pug/*.pug', 'build/html', { seeds: null })
 	.stylus('src/app/stylus/popup.styl', 'build/css')
+	.ts('src/app/ts/popup.ts', 'build/js');

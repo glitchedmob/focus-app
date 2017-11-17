@@ -7,14 +7,16 @@ html(lang='en')
     title Focus App
     link(rel="stylesheet", href="../css/popup.css")
   body
-    h1 Focus
+    h1#title Focus
 
-    .toggle-switch
-      input.toggle-checkbox#focus-state(type="checkbox")
-      label.toggle-viewport(for="focus-state")
-        .toggle
-          .toggle-button
-          .toggle-content.toggle-left
-            span On
-          .toggle-content.toggle-right
-            span Off
+    input.toggle-checkbox#focus-state(type="checkbox")
+    label.toggle-viewport(for="focus-state")
+      .toggle
+        .toggle-button
+        .toggle-content.toggle-left
+          span On
+        .toggle-content.toggle-right
+          span Off
+
+    script(src="../js/popup.js")
+          
