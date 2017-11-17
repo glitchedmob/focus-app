@@ -1,3 +1,5 @@
 import { FocusToggle } from './popup/FocusToggle';
 
-new FocusToggle();
+const backgroundPage = chrome.extension.getBackgroundPage() as any;
+
+new FocusToggle(backgroundPage.focusApp.store);

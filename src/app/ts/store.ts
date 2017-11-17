@@ -1,17 +1,29 @@
 export class Store
 {
 
-	public set(key: string, value: any, type = 'local'): void
+	constructor()
 	{
-		if (type !== 'local' && type !== 'sync') return;
-		chrome.storage[type].set({ key: value });
+		this.set('focused', true);
 	}
 
-	public get(key: string, type = 'local'): Promise<any> | void
+	public set(key: string, value: any, type = 'local'): Promise<any>
 	{
-		if (type !== 'local' && type !== 'sync') return;
 
 		return new Promise((resolve, reject) => {
+			if (type !== 'local' && type !== 'sync') return reject();
+
+			chrome.storage[type].set({ [key]: JSON.stringify(value) }, () => {
+				resolve('Saved successfully');
+			});
+		});
+	}
+
+	public get(key: string, type = 'local'): Promise<any>
+	{
+
+		return new Promise((resolve, reject) => {
+
+			if (type !== 'local' && type !== 'sync') return reject();
 
 			// Search chrome storage
 			chrome.storage[type].get(key, (value: any) => {
