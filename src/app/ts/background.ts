@@ -1,4 +1,4 @@
-import { Store } from './store';
+import { Store } from './background/store';
 
 const store = new Store();
 
