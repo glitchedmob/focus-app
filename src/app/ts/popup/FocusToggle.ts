@@ -1,5 +1,5 @@
 import { $on, qs } from '../helpers';
-import { Store } from './../store';
+import { Store } from './../background/store';
 /**
  * Manages the focus toggle in the popup
  */
@@ -17,17 +17,39 @@ export class FocusToggle
 		this.store.get('focused').then(this.updateToggle.bind(this));
 
 		// Chache main HTML elements in popup
-		this.titleEl = qs('#title');
-		this.toggleCheckbox = qs('#focus-state') as HTMLInputElement;
-
-		// Attache click event listener
-		$on(this.toggleCheckbox, 'click', this.toggleFocus.bind(this));
 	}
 
 	private updateToggle(data: any)
 	{
 		this.focused = (data.focused === 'true');
-		this.toggleCheckbox.checked = this.focused;
+
+
+		qs('main').innerHTML = `
+			<h1 id="title">Focus</h1>
+			<div class="toggle-switch">
+			<input id="focus-state" type="checkbox" class="toggle-checkbox"/ ${this.focused ? 'checked' : ''}>
+			<label for="focus-state" class="toggle-viewport">
+				<div class="toggle">
+					<div class="toggle-button"></div>
+					<div class="toggle-content toggle-left"><span>On</span></div>
+					<div class="toggle-content toggle-right"><span>Off</span></div>
+				</div>
+			</label>
+			</div>
+			<div id="bottom-buttons">
+				<button id="block-site" class="btn btn-danger">Block Site</button>
+				<button id="settings" class="btn btn-primary">Settings</button>
+			</div>
+		`;
+
+		this.titleEl = qs('#title');
+
+		this.toggleCheckbox = qs('#focus-state') as HTMLInputElement;
+
+		// Attache click event listener
+		$on(this.toggleCheckbox, 'click', this.toggleFocus.bind(this));
+
+		// this.toggleCheckbox.checked = this.focused;
 		this.titleEl.className = this.focused ? 'focused' : '';
 		// Update chrome icon
 		chrome.browserAction.setIcon({
