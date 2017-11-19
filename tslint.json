@@ -10,7 +10,8 @@
 		"quotemark": [true,	"single"],
 		"no-unused-expression": [true, "allow-new"],
 		"arrow-parens": false,
-		"curly": [true, "ignore-same-line"]
+		"curly": [true, "ignore-same-line"],
+		"interface-name": [true, "never-prefix"]
 	},
 	"rulesDirectory": []
 	

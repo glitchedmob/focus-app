@@ -1,5 +1,5 @@
 import { $on, qs } from '../helpers';
-import { Store } from './../background/store';
+import { Store } from './../background/Store';
 /**
  * Manages the focus toggle in the popup
  */
@@ -8,15 +8,11 @@ export class FocusToggle
 	private toggleCheckbox: HTMLInputElement;
 	private titleEl: Element;
 	private focused = false;
-	private store: Store;
 
-	constructor(store: Store)
+	constructor(private store: Store)
 	{
-		this.store = store;
-
 		this.store.get('focused').then(this.updateToggle.bind(this));
 
-		// Chache main HTML elements in popup
 	}
 
 	private updateToggle(data: any)

@@ -1,7 +1,9 @@
-import { Store } from './background/store';
+import { ChromeStorage } from './background/ChromeStorage';
+import { Store } from './background/Store';
 
-const store = new Store();
+const persistantStorage = new ChromeStorage();
+const store = new Store(persistantStorage);
 
-(window as any).focusApp = {
+(window as any).FocusApp = {
 	store,
 };
