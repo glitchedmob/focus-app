@@ -29,7 +29,7 @@ export class FocusToggle
 			</div>
 			<div id="bottom-buttons">
 				<button id="block-site" class="btn btn-danger">Block Site</button>
-				<button id="settings" class="btn btn-primary">Settings</button>
+				<a href="options.html" target="_blank" id="settings" class="btn btn-primary">Settings</a>
 			</div>
 		`;
 
