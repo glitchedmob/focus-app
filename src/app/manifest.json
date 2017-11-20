@@ -18,6 +18,7 @@
 	"background": {
 		"page": "html/background.html"
 	},
+	"options_page": "html/options.html",
 	"web_accessible_resources": [
 		"images/icons/focus-app-38.png"
 	]
