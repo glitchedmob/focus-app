@@ -4,7 +4,7 @@
 	toggle-switch(v-model="isFocused")
 	#bottom-buttons
 		button.btn.btn-danger#block-site Block Site
-		a.btn.btn-primary#settings(href="" target="_blank") Settings
+		router-link.btn.btn-primary#settings(:to="{ name: 'sites' }" target="_blank") Settings
 
 </template>
 
