@@ -3,9 +3,9 @@
 		#logo
 			img(src="../../images/focus-app.png")
 			h1 ocus
-		button.btn.btn-primary
+		router-link.btn(:class="sitesClass" :to="{ name: 'sites' }")
 			span Blocked Sites
-		button.btn.btn-primary-outline
+		router-link.btn(:class="scheduleClass" :to="{ name: 'schedule' }")
 			span Schedule
 </template>
 
@@ -14,6 +14,17 @@ import Vue from 'vue';
 
 export default Vue.extend({
 
+	computed: {
+		sitesClass(): string
+		{
+			return this.$route.name === 'sites' ? 'btn-primary' : 'btn-primary-outline';
+		},
+
+		scheduleClass(): string
+		{
+			return this.$route.name === 'schedule' ? 'btn-primary' : 'btn-primary-outline';
+		}
+	}
 });
 </script>
 
@@ -28,7 +39,8 @@ nav
 		margin-right 30px
 
 	& .btn
-		width 190px
+		text-align center
+		width 150px
 
 #logo
 	display flex
