@@ -5,11 +5,7 @@
 		p.left.arrow(@click="previousDay()") &lsaquo;
 		h2 {{ day }}
 		p.right.arrow(@click="nextDay()") &rsaquo;
-	.add-time
-		input(type="text" v-model="start")
-		input(type="text" v-model="end" @keyup.enter="addTime()")
-		button.btn.btn-primary.btn-circle(@click="addTime()")
-			span.plus &plus;
+	schedule-add(@submit="addTime($event)")
 	schedule-time(v-for="(time, index) of schedule[day.toLowerCase()]" :key="index" :time="time" @delete="removeTime(time)")
 </template>
 
@@ -17,6 +13,7 @@
 import Vue from 'vue';
 import Nav from './Nav.vue';
 import ScheduleTime from './ScheduleTime.vue';
+import ScheduleAdd from './ScheduleAdd.vue';
 
 export default Vue.extend({
 
@@ -32,9 +29,6 @@ export default Vue.extend({
 				'Friday',
 				'Saturday'
 			],
-
-			start: '',
-			end: '',
 
 			schedule: {
 				sunday: [
@@ -87,19 +81,15 @@ export default Vue.extend({
 			}
 		},
 
-		addTime() {
-			if(this.start != '' && this.end != '') {
-				(this.schedule as any)[this.day.toLowerCase()].unshift({
-					start: this.start,
-					end: this.end
-				})
-			}
+		addTime(event: any) {
+			(this.schedule as any)[this.day.toLowerCase()].unshift(event)
 		}
 	},
 
 	components: {
 		'options-nav': Nav,
-		ScheduleTime
+		ScheduleTime,
+		ScheduleAdd
 	}
 });
 </script>
@@ -129,23 +119,6 @@ export default Vue.extend({
 	&:hover
 	&:focus
 		cursor pointer
-
-.add-time
-		width 500px
-		display flex
-		align-items center
-		margin 15px auto
-
-		input
-			flex 1 1 100%
-			width 100%
-			text-align center
-			margin 0 10px
-			border 2px solid #333
-			font-size 20px
-			padding 12px 0
-		button
-			flex 1 1 123px
 </style>
 
 
