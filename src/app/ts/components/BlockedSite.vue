@@ -27,7 +27,7 @@ export default Vue.extend({
 			margin 8px 10px
 
 		p
-			flex-grow 1index
+			flex-grow 1
 			font-size 20px
 		
 		button
