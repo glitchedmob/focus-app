@@ -30,7 +30,7 @@ export default Vue.extend({
 
 <style lang="stylus" scoped>
 nav
-	padding 15px 0
+	padding 10px 0
 	display flex
 	align-items center
 	margin-left 15px

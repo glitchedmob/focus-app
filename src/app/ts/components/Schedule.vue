@@ -1,5 +1,5 @@
 <template lang="pug">
-	.options
+	.container
 		options-nav
 </template>
 
