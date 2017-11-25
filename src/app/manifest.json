@@ -18,7 +18,7 @@
 	"background": {
 		"page": "js/background.js"
 	},
-	"options_page": "options.html",
+	"options_page": "index.html#/options/sites",
 	"web_accessible_resources": [
 		"images/icons/focus-app-38.png"
 	]

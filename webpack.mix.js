@@ -11,5 +11,4 @@ mix
 	.copy(['src/app/manifest.json', 'src/app/*.html'], 'build')
 	.stylus('src/app/stylus/main.styl', 'build/css')
 	.ts('src/app/ts/main.ts', 'build/js')
-	.ts('src/app/ts/options.ts', 'build/js')
 	.ts('src/app/ts/background.ts', 'build/js')
