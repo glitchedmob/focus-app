@@ -1,7 +1,7 @@
 <template lang="pug">
 	.site
 		p {{ site }}
-		button.btn.btn-danger.btn-circle
+		button.btn.btn-danger.btn-circle(@click="$emit('delete')")
 			span.close &times;
 </template>
 

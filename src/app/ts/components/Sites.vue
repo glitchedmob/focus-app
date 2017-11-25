@@ -4,9 +4,9 @@
 		.block-site-wrapper
 			.block-site
 				input(type="text" v-model="siteInput")
-				button.btn.btn-primary(@click="sites.push(siteInput); siteInput = ''") Block Site
+				button.btn.btn-primary(@click="blockSite()") Block Site
 			.site-list
-				blocked-site(v-for="site in sites" :site="site" :key="site")
+				blocked-site(v-for="site in sites" :site="site" :key="site" @delete="unblockSite(site)")
 
 </template>
 
@@ -20,10 +20,32 @@ export default Vue.extend({
 	data() {
 		return {
 			siteInput: '',
-			sites: [
-				'https://facebook.com',
-				'https://youtube.com'
-			]
+			sites: <any>[]
+		}
+	},
+
+	created() {
+		this.sites = [
+			'https://facebook.com',
+			'https://youtube.com'
+		]
+	},
+
+	methods: {
+		blockSite(): void
+		{
+			this.sites.unshift(this.siteInput)
+			this.siteInput = '';
+		},
+
+		unblockSite(site: string): void
+		{
+			const siteIndex = this.sites.indexOf(site);
+
+			if(siteIndex > -1)
+			{
+				this.sites.splice(siteIndex, 1)
+			}
 		}
 	},
 
