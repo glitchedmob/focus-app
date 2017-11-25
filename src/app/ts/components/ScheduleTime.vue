@@ -27,11 +27,11 @@ export default Vue.extend({
 		margin 0 10px
 		font-size 20px
 		border 2px solid #333
-		flex-grow 1
+		flex 1 1 100%
 		padding 10px 0
 
 	button
-		flex-grow 0
+		flex 1 1 123px
 </style>
 
 

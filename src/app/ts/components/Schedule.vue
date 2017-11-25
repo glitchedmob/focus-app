@@ -6,10 +6,8 @@
 		h2 {{ day }}
 		p.right.arrow(@click="nextDay()") &rsaquo;
 	.add-time
-		.start
-			input(type="text" v-model="start")
-		.end
-			input(type="text" v-model="end")
+		input(type="text" v-model="start")
+		input(type="text" v-model="end" @keyup.enter="addTime()")
 		button.btn.btn-primary.btn-circle(@click="addTime()")
 			span.plus &plus;
 	schedule-time(v-for="(time, index) of schedule[day.toLowerCase()]" :key="index" :time="time" @delete="removeTime(time)")
@@ -90,10 +88,12 @@ export default Vue.extend({
 		},
 
 		addTime() {
-			(this.schedule as any)[this.day.toLowerCase()].unshift({
-				start: this.start,
-				end: this.end
-			})
+			if(this.start != '' && this.end != '') {
+				(this.schedule as any)[this.day.toLowerCase()].unshift({
+					start: this.start,
+					end: this.end
+				})
+			}
 		}
 	},
 
@@ -136,18 +136,16 @@ export default Vue.extend({
 		align-items center
 		margin 15px auto
 
-		div
-			flex-grow 1
 		input
-			width 89.5%
+			flex 1 1 100%
+			width 100%
 			text-align center
 			margin 0 10px
 			border 2px solid #333
 			font-size 20px
 			padding 12px 0
 		button
-			flex-grow 0
-			flex-shrink 0
+			flex 1 1 123px
 </style>
 
 
