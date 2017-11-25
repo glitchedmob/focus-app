@@ -15,13 +15,15 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
+	@import '../../stylus/variables'
+		
 	.site
 		width 100%
 		display flex
 		align-items center
 
 		&:hover
-			background-color #FAFAFA
+			background-color $light-grey
 
 		& > *
 			margin 8px 10px

@@ -15,23 +15,28 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-	.time
-		width 500px
-		display flex
-		align-items center
-		margin 15px auto
+@import '../../stylus/variables'
+	
+.time
+	width 500px
+	display flex
+	align-items center
+	margin 15px auto
 
-	p
-		text-align center
-		height 100%
-		margin 0 10px
-		font-size 20px
-		border 2px solid #333
-		flex 1 1 100%
-		padding 10px 0
+	&:hover
+		background-color $light-grey
 
-	button
-		flex 1 1 123px
+p
+	text-align center
+	height 100%
+	margin 0 10px
+	font-size 20px
+	border 2px solid #333
+	flex 1 1 100%
+	padding 10px 0
+
+button
+	flex 1 1 123px
 </style>
 
 
