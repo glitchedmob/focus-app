@@ -5,11 +5,20 @@
 		p.left.arrow(@click="previousDay()") &lsaquo;
 		h2 {{ day }}
 		p.right.arrow(@click="nextDay()") &rsaquo;
+	.add-time
+		.start
+			input(type="text" v-model="start")
+		.end
+			input(type="text" v-model="end")
+		button.btn.btn-primary.btn-circle(@click="addTime()")
+			span.plus &plus;
+	schedule-time(v-for="(time, index) of schedule[day.toLowerCase()]" :key="index" :time="time" @delete="removeTime(time)")
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Nav from './Nav.vue';
+import ScheduleTime from './ScheduleTime.vue';
 
 export default Vue.extend({
 
@@ -25,6 +34,28 @@ export default Vue.extend({
 				'Friday',
 				'Saturday'
 			],
+
+			start: '',
+			end: '',
+
+			schedule: {
+				sunday: [
+					{ start: '10:00 pm', end: '10:10 pm' },
+					{ start: '10:00 pm', end: '10:10 pm' }
+				],
+				monday: [
+					{ start: '10:00 pm', end: '10:10 pm' }
+				],
+				tuesday: [],
+				wednesday: [],
+				thursday: [
+					{ start: '10:00 pm', end: '10:10 pm' }
+				],
+				friday: [
+					{ start: '10:00 pm', end: '10:10 pm' }
+				],
+				saturday: []
+			}
 		}
 	},
 
@@ -48,11 +79,27 @@ export default Vue.extend({
 			} else {
 				this.day = this.week[dayIndex - 1];
 			}
+		},
+
+		removeTime(time: Object) {
+			const timeIndex = (this.schedule as any)[this.day.toLowerCase()].indexOf(time);
+
+			if(timeIndex > -1) {
+				(this.schedule as any)[this.day.toLowerCase()].splice(timeIndex, 1);
+			}
+		},
+
+		addTime() {
+			(this.schedule as any)[this.day.toLowerCase()].unshift({
+				start: this.start,
+				end: this.end
+			})
 		}
 	},
 
 	components: {
-		'options-nav': Nav
+		'options-nav': Nav,
+		ScheduleTime
 	}
 });
 </script>
@@ -60,7 +107,7 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 .day-slider
 	width 400px
-	margin 0 auto
+	margin 0 auto 40px auto
 	display flex
 	align-items center
 	justify-content center
@@ -82,6 +129,25 @@ export default Vue.extend({
 	&:hover
 	&:focus
 		cursor pointer
+
+.add-time
+		width 500px
+		display flex
+		align-items center
+		margin 15px auto
+
+		div
+			flex-grow 1
+		input
+			width 89.5%
+			text-align center
+			margin 0 10px
+			border 2px solid #333
+			font-size 20px
+			padding 12px 0
+		button
+			flex-grow 0
+			flex-shrink 0
 </style>
 
 

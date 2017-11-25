@@ -1,6 +1,7 @@
 <template lang="pug">
-	.site
-		p {{ site }}
+	.time
+		p {{ time.start }}
+		p {{ time.end }}
 		button.btn.btn-danger.btn-circle(@click="$emit('delete')")
 			span.close &times;
 </template>
@@ -9,30 +10,28 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-
-	props: ['site']
+	props: ['time']
 });
 </script>
 
 <style lang="stylus" scoped>
-	.site
-		width 100%
+	.time
+		width 500px
 		display flex
 		align-items center
+		margin 15px auto
 
-		&:hover
-			background-color #FAFAFA
+	p
+		text-align center
+		height 100%
+		margin 0 10px
+		font-size 20px
+		border 2px solid #333
+		flex-grow 1
+		padding 10px 0
 
-		& > *
-			margin 8px 10px
-
-		p
-			flex-grow 1index
-			font-size 20px
-		
-		button
-			flex-grow 0
-			
+	button
+		flex-grow 0
 </style>
 
 
