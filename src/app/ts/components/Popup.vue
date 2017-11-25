@@ -1,7 +1,7 @@
 <template lang="pug">
 .popup
 	h1(v-bind:class="{ focused: isFocused }") Focus
-	toggle-switch(v-model="isFocused")
+	toggle-switch(v-model="isFocused" @input="updateIcon()")
 	#bottom-buttons
 		button.btn.btn-danger#block-site Block Site
 		router-link.btn.btn-primary#settings(:to="{ name: 'sites' }" target="_blank") Settings
@@ -11,11 +11,31 @@
 <script lang="ts">
 import Vue from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
+import browser from '../browser';
 
 export default Vue.extend({
 	data() {
 		return {
-			isFocused: false
+			isFocused: null
+		}
+	},
+
+	created() {
+		browser.storage.get('focused').then(data => {
+			this.isFocused = data;
+			this.updateIcon();
+		});
+	},
+
+ 	methods: {
+		updateIcon() {
+			browser.setIcon(
+				this.isFocused ?
+				'../images/icons/focus-app38.png' :
+				'../images/icons/focus-app-red38.png'
+			);
+
+			browser.storage.set('focused', this.isFocused)
 		}
 	},
 
