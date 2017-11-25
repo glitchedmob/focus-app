@@ -6,7 +6,11 @@
 		h2 {{ day }}
 		p.right.arrow(@click="nextDay()") &rsaquo;
 	schedule-add(@submit="addTime($event)")
-	schedule-time(v-for="(time, index) of schedule[day.toLowerCase()]" :key="index" :time="time" @delete="removeTime(time)")
+	schedule-time(
+		v-for="(time, index) of schedule[day.toLowerCase()]"
+		:key="index"
+		:time="time"
+		@delete="removeTime(time)")
 </template>
 
 <script lang="ts">
@@ -14,6 +18,7 @@ import Vue from 'vue';
 import Nav from './Nav.vue';
 import ScheduleTime from './ScheduleTime.vue';
 import ScheduleAdd from './ScheduleAdd.vue';
+import browser from '../browser';
 
 export default Vue.extend({
 
@@ -21,34 +26,21 @@ export default Vue.extend({
 		return {
 			day: 'Sunday',
 			week: [
-				'Sunday',
-				'Monday',
-				'Tuesday',
-				'Wednesday',
-				'Thursday',
-				'Friday',
-				'Saturday'
+				'Sunday', 'Monday', 'Tuesday',	'Wednesday',
+				'Thursday', 'Friday', 'Saturday'
 			],
 
 			schedule: {
-				sunday: [
-					{ start: '10:00 pm', end: '10:10 pm' },
-					{ start: '10:00 pm', end: '10:10 pm' }
-				],
-				monday: [
-					{ start: '10:00 pm', end: '10:10 pm' }
-				],
-				tuesday: [],
-				wednesday: [],
-				thursday: [
-					{ start: '10:00 pm', end: '10:10 pm' }
-				],
-				friday: [
-					{ start: '10:00 pm', end: '10:10 pm' }
-				],
-				saturday: []
+				sunday: [],	monday: [],	tuesday: [],	wednesday: [],
+				thursday: [],	friday: [],	saturday: []
 			}
 		}
+	},
+
+	created() {
+		browser.storage.get('schedule', 'sync')
+			.catch(() => {browser.storage.set('schedule', this.schedule, 'sync')})
+			.then(schedule => this.schedule = schedule)
 	},
 
 	methods: {
@@ -76,13 +68,16 @@ export default Vue.extend({
 		removeTime(time: Object) {
 			const timeIndex = (this.schedule as any)[this.day.toLowerCase()].indexOf(time);
 
-			if(timeIndex > -1) {
-				(this.schedule as any)[this.day.toLowerCase()].splice(timeIndex, 1);
-			}
+			if(timeIndex == -1) return;
+
+			(this.schedule as any)[this.day.toLowerCase()].splice(timeIndex, 1);
+			browser.storage.set('schedule', this.schedule, 'sync');
 		},
 
 		addTime(event: any) {
 			(this.schedule as any)[this.day.toLowerCase()].unshift(event)
+
+			browser.storage.set('schedule', this.schedule, 'sync');
 		}
 	},
 
