@@ -1,6 +1,9 @@
 <template lang="pug">
-.toggle-switch(v-if="checked !== null")
-	input.toggle-checkbox#focus-toggle(type="checkbox" :checked="checked" @change="emitCheckboxChange($event)")
+.toggle-switch
+	input.toggle-checkbox#focus-toggle(
+		type="checkbox"
+		:checked="checked"
+		@change="emitCheckboxChange($event)")
 	label.toggle-viewport(for="focus-toggle")
 		.toggle
 			.toggle-button
@@ -17,7 +20,8 @@ export default Vue.extend({
 	props: ['checked'],
 	methods: {
 		emitCheckboxChange(event: Event): void
-		{
+		{	
+			console.log((event.target as HTMLInputElement).checked)
 			this.$emit('input', (event.target as HTMLInputElement).checked)
 		}
 	}

@@ -1,7 +1,11 @@
 <template lang="pug">
 .popup
 	h1(v-bind:class="{ focused: isFocused }") Focus
-	toggle-switch(v-model="isFocused" @input="updateIcon()")
+	toggle-switch(
+		v-if="isFocused != null"
+		v-model="isFocused"
+		:checked="isFocused"
+		@input="updateIcon()")
 	#bottom-buttons
 		button.btn.btn-danger#block-site Block Site
 		router-link.btn.btn-primary#settings(:to="{ name: 'sites' }" target="_blank") Settings
