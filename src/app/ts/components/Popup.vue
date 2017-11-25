@@ -28,6 +28,7 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 .popup
 	width 400px
+	padding 10px
 
 h1
 	text-align center
