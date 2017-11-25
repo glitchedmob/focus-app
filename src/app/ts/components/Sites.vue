@@ -1,12 +1,11 @@
 <template lang="pug">
-	.container
-		options-nav
-		.block-site-wrapper
-			.block-site
-				input(type="text" v-model="siteInput" @keyup.enter="blockSite()")
-				button.btn.btn-primary(@click="blockSite()") Block Site
-			.site-list
-				blocked-site(v-for="site in sites" :site="site" :key="site" @delete="unblockSite(site)")
+.container
+	options-nav
+	.block-site
+		input(type="text" v-model="siteInput" @keyup.enter="blockSite()")
+		button.btn.btn-primary(@click="blockSite()") Block Site
+	.site-list
+		blocked-site(v-for="site in sites" :site="site" :key="site" @delete="unblockSite(site)")
 
 </template>
 
@@ -57,18 +56,18 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-	.block-site
-		display flex
-		margin-bottom 10px
-		
-		input
-			padding 0 10px
-			font-size 20px
-			margin-right 20px
-			flex-grow 1
-		
-		button
-			flex-grow 0
+.block-site
+	display flex
+	margin-bottom 10px
+	
+	input
+		padding 0 10px
+		font-size 20px
+		margin-right 20px
+		flex-grow 1
+	
+	button
+		flex-grow 0
 </style>
 
 
