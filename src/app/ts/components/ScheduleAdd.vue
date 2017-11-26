@@ -22,8 +22,11 @@ export default Vue.extend({
 
 	methods: {
 		submit() {
-			if(this.start != '' && this.end != '') {
+			if(!(this.time.start === '' || this.time.end === '')) {
+				console.log(this.time);
 				this.$emit('submit', this.time)
+				this.time.start = '';
+				this.time.end = '';
 			}
 		}
 	}

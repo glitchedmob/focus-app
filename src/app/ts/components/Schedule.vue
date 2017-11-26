@@ -74,8 +74,13 @@ export default Vue.extend({
 			browser.storage.set('schedule', this.schedule, 'sync');
 		},
 
-		addTime(event: any) {
-			(this.schedule as any)[this.day.toLowerCase()].unshift(event)
+		addTime(time: any) {
+			console.log(time);
+
+			(this.schedule as any)[this.day.toLowerCase()].unshift({
+				start: time.start,
+				end: time.end 
+			})
 
 			browser.storage.set('schedule', this.schedule, 'sync');
 		}
