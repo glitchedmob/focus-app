@@ -1,3 +1,34 @@
+<template lang="pug">
+.toggle-switch
+	input.toggle-checkbox#focus-toggle(
+		type="checkbox"
+		:checked="checked"
+		@change="emitCheckboxChange($event)")
+	label.toggle-viewport(for="focus-toggle")
+		.toggle
+			.toggle-button
+			.toggle-content.toggle-left
+				span On
+			.toggle-content.toggle-right
+				span Off
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+	props: ['checked'],
+	methods: {
+		emitCheckboxChange(event: Event): void
+		{	
+			console.log((event.target as HTMLInputElement).checked)
+			this.$emit('input', (event.target as HTMLInputElement).checked)
+		}
+	}
+});
+</script>
+
+<style lang="stylus" scoped>
 $height = 50px
 $width = 130px
 $left-background = linear-gradient(360deg, #2B32B2 0%, #1488CC 101.35%)
@@ -97,4 +128,5 @@ $toggle-background = #EEEEEE
 		
 		.toggle-left
 			margin-left $height
-	
+</style>
+

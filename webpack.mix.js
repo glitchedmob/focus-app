@@ -8,11 +8,7 @@ mix
 	.pug('src/docs/pug/*.pug', 'docs', { seeds: null })
 	// Extension files
 	.copyDirectory('src/app/images', 'build/images')
-	.copy(['src/app/manifest.json'], 'build')
-	.pug('src/app/pug/*.pug', 'build/html', { seeds: null })
-	.stylus('src/app/stylus/popup.styl', 'build/css')
-	.stylus('src/app/stylus/background.styl', 'build/css')
-	.stylus('src/app/stylus/options.styl', 'build/css')
-	.ts('src/app/ts/popup.ts', 'build/js')
+	.copy(['src/app/manifest.json', 'src/app/*.html'], 'build')
+	.stylus('src/app/stylus/main.styl', 'build/css')
+	.ts('src/app/ts/main.ts', 'build/js')
 	.ts('src/app/ts/background.ts', 'build/js')
-	.ts('src/app/ts/options.ts', 'build/js');

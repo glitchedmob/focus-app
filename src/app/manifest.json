@@ -10,15 +10,15 @@
 	},
 	"browser_action": {
 		"default_icon": "images/icons/focus-app-red38.png",
-		"default_popup": "html/popup.html"
+		"default_popup": "index.html"
 	},
 	"permissions": [
 		"storage"
 	],
 	"background": {
-		"page": "html/background.html"
+		"page": "js/background.js"
 	},
-	"options_page": "html/options.html",
+	"options_page": "index.html#/options/sites",
 	"web_accessible_resources": [
 		"images/icons/focus-app-38.png"
 	]
