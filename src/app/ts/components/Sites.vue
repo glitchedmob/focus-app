@@ -13,6 +13,7 @@
 import Vue from 'vue';
 import Nav from './Nav.vue';
 import BlockedSite from './BlockedSite.vue';
+import browser from '../browser';
 
 export default Vue.extend({
 
@@ -24,21 +25,18 @@ export default Vue.extend({
 	},
 
 	created() {
-		this.sites = [
-			'https://facebook.com',
-			'https://youtube.com'
-		]
+		browser.storage.get('sites', 'sync')
+			.then(sites => this.sites = sites);
 	},
 
 	methods: {
-		blockSite(): void
-		{
+		blockSite()	{
 			this.sites.unshift(this.siteInput)
+			browser.storage.set('sites', this.sites, 'synce');
 			this.siteInput = '';
 		},
 
-		unblockSite(site: string): void
-		{
+		unblockSite(site: string)	{
 			const siteIndex = this.sites.indexOf(site);
 
 			if(siteIndex > -1)
