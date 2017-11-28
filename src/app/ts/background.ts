@@ -34,13 +34,15 @@ class Background {
 		if (
 			this.focused === null ||
 			this.sites === null ||
-			!this.focused
+			!this.focused ||
+			requestDetails.tabId === -1
 		) return returnObj;
 
-		if (this.blockSite(requestDetails.url)) {
-			returnObj.cancel = true;
-			this.updateTab(requestDetails.tabId);
-		}
+		chrome.tabs.get(requestDetails.tabId, (tab) => {
+			if (this.blockSite(tab.url as string)) {
+				this.updateTab(requestDetails.tabId);
+			}
+		});
 
 		return returnObj;
 	}
@@ -54,8 +56,10 @@ class Background {
 	private blockSite(url: string): boolean	{
 		let block = false;
 
+
 		for (const site of (this.sites as any[])) {
-			if (url.includes(site)) {
+			const regPattern = new RegExp('^https?:\/\/www\.|^https?:\/\/' + site, 'g');
+			if (regPattern.test(url)) {
 				block = true;
 				break;
 			}
