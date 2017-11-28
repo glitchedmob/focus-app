@@ -7,9 +7,3 @@ new Vue({
 	router,
 	render: (h: any) => h(App)
 });
-
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-	console.log(tabId);
-	console.log(changeInfo);
-	console.log(tab);
-});

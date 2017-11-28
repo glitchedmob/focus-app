@@ -20,7 +20,8 @@
 		"webRequestBlocking"
 	],
 	"background": {
-		"page": "background.html"
+		"scripts": ["js/background.js"],
+		"persistant": true
 	},
 	"options_page": "index.html#/options/sites",
 	"web_accessible_resources": [
