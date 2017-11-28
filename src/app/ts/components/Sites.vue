@@ -32,7 +32,7 @@ export default Vue.extend({
 	methods: {
 		blockSite()	{
 			this.sites.unshift(this.siteInput)
-			browser.storage.set('sites', this.sites, 'synce');
+			browser.storage.set('sites', this.sites, 'sync');
 			this.siteInput = '';
 		},
 
