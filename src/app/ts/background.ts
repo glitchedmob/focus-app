@@ -1,74 +1,28 @@
+import { Scheduling } from './background/Scheduling';
+import { SiteBlocking } from './background/SiteBlocking';
+
 import { Storage } from './extension';
 
 class Background {
-	private focused: null | boolean = null;
-	private sites: null | any[] = null;
-	private schedule = null;
-	private blockUrl = `${chrome.extension.getURL('index.html')}#/block`;
-
 	constructor() {
-		this.updateFromStorage();
-		this.addEvents();
+		this.initializeApp();
+		new SiteBlocking();
+		new Scheduling();
 	}
 
-	private updateFromStorage() {
-		Storage.get('focused')
-			.then((value: boolean) => this.focused = value);
-		Storage.get('sites', 'sync')
-			.then((value: any) => this.sites = value);
-	}
-
-	private addEvents() {
-		chrome.storage.onChanged.addListener(this.updateFromStorage.bind(this));
-
-		chrome.webRequest.onBeforeRequest.addListener(
-			this.checkRequest.bind(this),
-			{ urls: ['<all_urls>'] },
-			['blocking']
-		);
-	}
-
-	private checkRequest(requestDetails: any) {
-		const returnObj = { cancel: false };
-
-		if (
-			this.focused === null ||
-			this.sites === null ||
-			!this.focused ||
-			requestDetails.tabId === -1
-		) return returnObj;
-
-		chrome.tabs.get(requestDetails.tabId, (tab) => {
-			if (this.blockSite(tab.url as string)) {
-				this.updateTab(requestDetails.tabId);
+	private initializeApp() {
+		chrome.runtime.onInstalled.addListener(details => {
+			if (details.reason === 'install') {
+				this.setInitialStorage();
 			}
 		});
-
-		return returnObj;
 	}
 
-	private updateTab(tabId: number) {
-		if (tabId === -1) return;
-
-		chrome.tabs.update(tabId, {url: this.blockUrl});
+	private setInitialStorage() {
+		Storage.set('focused', false);
+		Storage.set('sites', []);
+		Storage.set('schedule', {});
 	}
-
-	private blockSite(url: string): boolean	{
-		let block = false;
-
-
-		for (const site of (this.sites as any[])) {
-			const regPattern = new RegExp('^https?:\/\/www\.' + site + '|^https?:\/\/' + site, 'g');
-			const matched = regPattern.test(url);
-			if (matched) {
-				block = true;
-				break;
-			}
-		}
-
-		return block;
-	}
-
 }
 
 new Background();
