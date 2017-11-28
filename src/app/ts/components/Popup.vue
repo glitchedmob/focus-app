@@ -15,31 +15,36 @@
 <script lang="ts">
 import Vue from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
-import browser from '../browser';
+import { Storage, ExtensionIcon } from '../browser';
 
 export default Vue.extend({
 	data() {
 		return {
-			isFocused: null
+			isFocused: null 
 		}
 	},
 
 	created() {
-		browser.storage.get('focused').then(data => {
+		Storage.get('focused')
+		.catch(() => {
+			(this.isFocused as null | boolean) = false;
+			Storage.set('focused', this.isFocused)
+		})
+		.then(data => {
 			this.isFocused = data;
 			this.updateIcon();
-		});
+		})
 	},
 
  	methods: {
 		updateIcon() {
-			browser.setIcon(
+			ExtensionIcon.set(
 				this.isFocused ?
 				'../images/icons/focus-app38.png' :
 				'../images/icons/focus-app-red38.png'
 			);
 
-			browser.storage.set('focused', this.isFocused)
+			Storage.set('focused', this.isFocused)
 		}
 	},
 

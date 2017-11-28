@@ -13,10 +13,14 @@
 		"default_popup": "index.html"
 	},
 	"permissions": [
-		"storage"
+		"storage",
+		"tabs",
+		"webRequest",
+		"*://*/",
+		"webRequestBlocking"
 	],
 	"background": {
-		"page": "js/background.js"
+		"page": "background.html"
 	},
 	"options_page": "index.html#/options/sites",
 	"web_accessible_resources": [

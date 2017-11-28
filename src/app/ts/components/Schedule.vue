@@ -18,7 +18,7 @@ import Vue from 'vue';
 import Nav from './Nav.vue';
 import ScheduleTime from './ScheduleTime.vue';
 import ScheduleAdd from './ScheduleAdd.vue';
-import browser from '../browser';
+import { Storage } from '../browser';
 
 export default Vue.extend({
 
@@ -38,8 +38,8 @@ export default Vue.extend({
 	},
 
 	created() {
-		browser.storage.get('schedule', 'sync')
-			.catch(() => {browser.storage.set('schedule', this.schedule, 'sync')})
+		Storage.get('schedule', 'sync')
+			.catch(() => {Storage.set('schedule', this.schedule, 'sync')})
 			.then(schedule => this.schedule = schedule)
 	},
 
@@ -71,7 +71,7 @@ export default Vue.extend({
 			if(timeIndex == -1) return;
 
 			(this.schedule as any)[this.day.toLowerCase()].splice(timeIndex, 1);
-			browser.storage.set('schedule', this.schedule, 'sync');
+			Storage.set('schedule', this.schedule, 'sync');
 		},
 
 		addTime(time: any) {
@@ -82,7 +82,7 @@ export default Vue.extend({
 				end: time.end 
 			})
 
-			browser.storage.set('schedule', this.schedule, 'sync');
+			Storage.set('schedule', this.schedule, 'sync');
 		}
 	},
 

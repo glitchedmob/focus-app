@@ -11,9 +11,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
+
 import Nav from './Nav.vue';
 import BlockedSite from './BlockedSite.vue';
-import browser from '../browser';
+
+import { Storage } from '../browser';
 
 export default Vue.extend({
 
@@ -25,14 +27,14 @@ export default Vue.extend({
 	},
 
 	created() {
-		browser.storage.get('sites', 'sync')
+		Storage.get('sites', 'sync')
 			.then(sites => this.sites = sites);
 	},
 
 	methods: {
 		blockSite()	{
 			this.sites.unshift(this.siteInput)
-			browser.storage.set('sites', this.sites, 'sync');
+			Storage.set('sites', this.sites, 'sync');
 			this.siteInput = '';
 		},
 

@@ -1,6 +1,6 @@
 export class Storage
 {
-	public set(key: string, value: any, storageType = 'local'): Promise<any>
+	public static set(key: string, value: any, storageType = 'local'): Promise<any>
 	{
 
 		return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ export class Storage
 		});
 	}
 
-	public get(key: string, storageType = 'local'): Promise<any>
+	public static get(key: string, storageType = 'local'): Promise<any>
 	{
 
 		return new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ export class Storage
 			chrome.storage[storageType].get(key, (value: any) => {
 
 				// Resolve only if we did get a value
-				if (value) {
+				if (Object.keys(value).length !== 0) {
 					resolve(JSON.parse(value[key]));
 				} else {
 					reject();
