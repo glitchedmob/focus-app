@@ -58,8 +58,9 @@ class Background {
 
 
 		for (const site of (this.sites as any[])) {
-			const regPattern = new RegExp('^https?:\/\/www\.|^https?:\/\/' + site, 'g');
-			if (regPattern.test(url)) {
+			const regPattern = new RegExp('^https?:\/\/www\.' + site + '|^https?:\/\/' + site, 'g');
+			const matched = regPattern.test(url);
+			if (matched) {
 				block = true;
 				break;
 			}
