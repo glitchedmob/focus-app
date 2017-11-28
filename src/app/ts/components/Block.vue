@@ -20,4 +20,15 @@
 	.block
 		width 100vw
 		height 100vh
+		display flex
+		justify-content center
+		align-items center
+		background linear-gradient(120.76deg, #2B32B2 0%, #1488CC 100%)
+		color #FFF
+		text-align center
+
+	h1
+		font-size 60px
+	p
+		font-size 30px
 </style>
