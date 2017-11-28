@@ -18,7 +18,7 @@ import Vue from 'vue';
 import Nav from './Nav.vue';
 import ScheduleTime from './ScheduleTime.vue';
 import ScheduleAdd from './ScheduleAdd.vue';
-import { Storage } from '../browser';
+import { Storage } from '../extension';
 
 export default Vue.extend({
 

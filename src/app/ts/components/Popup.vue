@@ -15,7 +15,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import ToggleSwitch from './ToggleSwitch.vue';
-import { Storage, ExtensionIcon } from '../browser';
+import { Storage, Icon } from '../extension';
 
 export default Vue.extend({
 	data() {
@@ -38,7 +38,7 @@ export default Vue.extend({
 
  	methods: {
 		updateIcon() {
-			ExtensionIcon.set(
+			Icon.set(
 				this.isFocused ?
 				'../images/icons/focus-app38.png' :
 				'../images/icons/focus-app-red38.png'

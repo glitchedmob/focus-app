@@ -14,7 +14,7 @@
 // 	}
 // });
 
-import { Storage } from './browser';
+import { Storage } from './extension';
 
 let focused: null | boolean = null;
 let sites: null | any = null;

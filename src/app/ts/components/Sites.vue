@@ -15,7 +15,7 @@ import Vue from 'vue';
 import Nav from './Nav.vue';
 import BlockedSite from './BlockedSite.vue';
 
-import { Storage } from '../browser';
+import { Storage } from '../extension';
 
 export default Vue.extend({
 
