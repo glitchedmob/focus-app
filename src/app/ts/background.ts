@@ -1,58 +1,69 @@
-// import { ChromeStorage } from './background/ChromeStorage';
-// import { Store } from './background/Store';
-
-// const persistantStorage = new ChromeStorage();
-// const store = new Store(persistantStorage);
-
-// (window as any).FocusApp = {
-// 	store,
-// };
-
-// chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-// 	if (tab.url && tab.url.includes('facebook.com')) {
-// 		chrome.tabs.update(tabId, {url : 'https://google.com'});
-// 	}
-// });
-
 import { Storage } from './extension';
 
-const blockUrl = chrome.extension.getURL('index.html');
+class Background {
+	private focused: null | boolean = null;
+	private sites: null | any[] = null;
+	private schedule = null;
+	private blockUrl = `${chrome.extension.getURL('index.html')}#/block`;
 
-let focused: null | boolean = null;
-let sites: null | any = null;
+	constructor() {
+		this.updateFromStorage();
+		this.addEvents();
+	}
 
-Storage.get('focused')
-	.then((value: boolean) => focused = value);
-Storage.get('sites', 'sync')
-	.then((value: any) => sites = value);
+	private updateFromStorage() {
+		Storage.get('focused')
+			.then((value: boolean) => this.focused = value);
+		Storage.get('sites', 'sync')
+			.then((value: any) => this.sites = value);
+	}
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
-	Storage.get('focused')
-		.then((value: boolean) => focused = value);
-	Storage.get('sites', 'sync')
-		.then((value: any) => sites = value);
-});
+	private addEvents() {
+		chrome.storage.onChanged.addListener(this.updateFromStorage.bind(this));
 
-chrome.webRequest.onBeforeRequest.addListener(
-	(details) => {
+		chrome.webRequest.onBeforeRequest.addListener(
+			this.checkRequest.bind(this),
+			{ urls: ['<all_urls>'] },
+			['blocking']
+		);
+	}
 
-		if (focused === null || !focused || sites === null) return {cancel: false};
+	private checkRequest(requestDetails: any) {
+		const returnObj = { cancel: false };
 
+		if (
+			this.focused === null ||
+			this.sites === null ||
+			!this.focused
+		) return returnObj;
+
+		if (this.blockSite(requestDetails.url)) {
+			returnObj.cancel = true;
+			this.updateTab(requestDetails.tabId);
+		}
+
+		return returnObj;
+	}
+
+	private updateTab(tabId: number) {
+		if (tabId === -1) return;
+
+		chrome.tabs.update(tabId, {url: this.blockUrl});
+	}
+
+	private blockSite(url: string): boolean	{
 		let block = false;
 
-		for (const site of sites) {
-			if (details.url.includes(site)) {
+		for (const site of (this.sites as any[])) {
+			if (url.includes(site)) {
 				block = true;
 				break;
 			}
 		}
 
-		if (block && details.tabId !== -1) {
-			chrome.tabs.update(details.tabId, { url: `${blockUrl}#/block` });
-		}
+		return block;
+	}
 
-		return {cancel: block};
-	},
-	{urls: ['<all_urls>']},
-	['blocking']
-);
+}
+
+new Background();
