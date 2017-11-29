@@ -16,7 +16,9 @@ export class Scheduling {
 	}
 
 	private addEvents() {
-		console.log('hello');
+		chrome.storage.onChanged.addListener(details => {
+			console.log(details);
+		});
 	}
 
 	private createAlarms() {
