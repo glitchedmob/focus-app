@@ -120,5 +120,3 @@ export default Vue.extend({
 	&:focus
 		cursor pointer
 </style>
-
-

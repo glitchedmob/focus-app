@@ -77,5 +77,3 @@ h1
 #settings
 	float right
 </style>
-
-

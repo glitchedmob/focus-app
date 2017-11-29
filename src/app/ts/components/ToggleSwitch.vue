@@ -129,4 +129,3 @@ $toggle-background = #EEEEEE
 		.toggle-left
 			margin-left $height
 </style>
-

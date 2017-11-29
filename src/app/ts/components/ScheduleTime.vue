@@ -38,5 +38,3 @@ p
 button
 	flex 1 1 123px
 </style>
-
-

@@ -36,5 +36,3 @@ export default Vue.extend({
 			flex-grow 0
 			
 </style>
-
-

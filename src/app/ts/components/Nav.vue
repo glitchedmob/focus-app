@@ -55,5 +55,3 @@ nav
 		color transparent
 		text-shadow 0 0 8px rgba(0,0,0,0.5)
 </style>
-
-

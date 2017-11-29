@@ -69,5 +69,3 @@ export default Vue.extend({
 	button
 		flex-grow 0
 </style>
-
-
