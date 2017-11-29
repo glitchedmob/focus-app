@@ -19,9 +19,19 @@ class Background {
 	}
 
 	private setInitialStorage() {
-		Storage.set('focused', false);
-		Storage.set('sites', []);
-		Storage.set('schedule', {});
+		Storage.get('focused')
+			.catch(() => {Storage.set('focused', false); });
+		Storage.get('sites', 'sync')
+			.catch(() => {Storage.set('sites', [], 'sync'); });
+		Storage.get('schedule', 'sync')
+			.catch(() => {
+				const schedule = {
+					sunday: [],	monday: [],	tuesday: [],	wednesday: [],
+					thursday: [],	friday: [],	saturday: []
+				};
+
+				Storage.set('schedule', schedule, 'sync');
+			});
 	}
 }
 

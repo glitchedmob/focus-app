@@ -30,10 +30,7 @@ export default Vue.extend({
 				'Thursday', 'Friday', 'Saturday'
 			],
 
-			schedule: {
-				sunday: [],	monday: [],	tuesday: [],	wednesday: [],
-				thursday: [],	friday: [],	saturday: []
-			}
+			schedule: {}
 		}
 	},
 
