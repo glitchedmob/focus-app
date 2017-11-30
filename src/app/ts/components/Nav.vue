@@ -3,10 +3,10 @@
 		#logo
 			img(src="../../images/focus-app.png")
 			h1 ocus
-		router-link.btn(:class="sitesClass" :to="{ name: 'sites' }")
-			span Blocked Sites
-		router-link.btn(:class="scheduleClass" :to="{ name: 'schedule' }")
-			span Schedule
+		//- router-link.btn(:class="sitesClass" :to="{ name: 'sites' }")
+		//- 	span Blocked Sites
+		//- router-link.btn(:class="scheduleClass" :to="{ name: 'schedule' }")
+		//- 	span Schedule
 </template>
 
 <script lang="ts">
@@ -14,17 +14,17 @@ import Vue from 'vue';
 
 export default Vue.extend({
 
-	computed: {
-		sitesClass(): string
-		{
-			return this.$route.name === 'sites' ? 'btn-primary' : 'btn-primary-outline';
-		},
+	// computed: {
+	// 	sitesClass(): string
+	// 	{
+	// 		return this.$route.name === 'sites' ? 'btn-primary' : 'btn-primary-outline';
+	// 	},
 
-		scheduleClass(): string
-		{
-			return this.$route.name === 'schedule' ? 'btn-primary' : 'btn-primary-outline';
-		}
-	}
+	// 	scheduleClass(): string
+	// 	{
+	// 		return this.$route.name === 'schedule' ? 'btn-primary' : 'btn-primary-outline';
+	// 	}
+	// }
 });
 </script>
 

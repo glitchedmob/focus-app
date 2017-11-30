@@ -7,7 +7,7 @@
 		:checked="isFocused"
 		@input="updateIcon()")
 	#bottom-buttons
-		button.btn.btn-danger#block-site Block Site
+		button.btn.btn-danger#block-site(@click="blockSite()") Block Site
 		router-link.btn.btn-primary#settings(:to="{ name: 'sites' }" target="_blank") Settings
 
 </template>
@@ -20,7 +20,8 @@ import { Storage, Icon } from '../extension';
 export default Vue.extend({
 	data() {
 		return {
-			isFocused: null 
+			isFocused: null,
+			sites: ([] as string[])
 		}
 	},
 
@@ -33,7 +34,9 @@ export default Vue.extend({
 		.then(data => {
 			this.isFocused = data;
 			this.updateIcon();
-		})
+		});
+		Storage.get('sites', 'sync')
+			.then(sites => this.sites = sites)
 	},
 
  	methods: {
@@ -45,6 +48,16 @@ export default Vue.extend({
 			);
 
 			Storage.set('focused', this.isFocused)
+		},
+
+		blockSite() {
+			chrome.tabs.getSelected((tab: any) => {
+				const domain = new URL(tab.url).hostname;
+
+				this.sites.unshift(domain);
+
+				Storage.set('sites', this.sites, 'sync');
+			})
 		}
 	},
 

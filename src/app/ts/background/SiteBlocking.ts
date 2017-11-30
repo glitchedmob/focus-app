@@ -6,7 +6,6 @@ export class SiteBlocking {
 	private blockUrl = `${chrome.extension.getURL('index.html')}#/block`;
 
 	constructor() {
-		this.updateDataFromStorage();
 		this.addEvents();
 	}
 
