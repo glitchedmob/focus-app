@@ -3,8 +3,9 @@ mix.pug   = require('laravel-mix-pug');
 
 mix
 	.sourceMaps()
+	.setPublicPath('build')
 	// GitHub Pages files
-	.stylus('src/docs/stylus/main.styl', 'docs/css')
+	.stylus('src/docs/stylus/main.styl', '../docs/css')
 	.pug('src/docs/pug/*.pug', 'docs', { seeds: null })
 	// Extension files
 	.copyDirectory('src/app/images', 'build/images')
