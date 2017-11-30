@@ -14,6 +14,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
+
+// Require is recognized by webpack, but not by typescript
+// hence the declare statement here
+declare function require(module :string): any;
+const psl = require('psl');
+
 import ToggleSwitch from './ToggleSwitch.vue';
 import { Storage, Icon } from '../extension';
 
@@ -52,9 +58,10 @@ export default Vue.extend({
 
 		blockSite() {
 			chrome.tabs.getSelected((tab: any) => {
-				const domain = new URL(tab.url).hostname;
-
-				this.sites.unshift(domain);
+				const fullDomain = new URL(tab.url).hostname;
+				const rootDomain = psl.parse(fullDomain).domain;
+				
+				rootDomain != null && this.sites.unshift(rootDomain);
 
 				Storage.set('sites', this.sites, 'sync');
 			})
